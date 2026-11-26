@@ -32,7 +32,7 @@ function escapeHtml(value) {
 }
 
 async function enviarLivro({ supabase, bucket, paymentId, nome, email, resendKey }) {
-  const { data: file, error: downloadError } = await supabase.storage.from(bucket).download('umajornadacosmica.pdf');
+  const { data: file, error: downloadError } = await supabase.storage.from(bucket).download('livroumajornadacosmica.pdf');
   if (downloadError || !file) throw new Error('Não foi possível baixar o PDF do armazenamento.');
   const buffer = Buffer.from(await file.arrayBuffer());
   if (buffer.subarray(0, 5).toString() !== '%PDF-') throw new Error('O arquivo armazenado não é um PDF válido.');

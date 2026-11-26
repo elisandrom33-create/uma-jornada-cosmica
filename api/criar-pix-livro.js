@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
   if (
     email.length > 150 ||
-    !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   ) {
     return res.status(400).json({ error: 'Informe um e-mail válido.' });
   }

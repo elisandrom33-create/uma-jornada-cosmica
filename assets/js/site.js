@@ -76,7 +76,7 @@
       formMessage.textContent = error.message || 'Não foi possível gerar o Pix. Tente novamente.';
     } finally {
       payButton.disabled = false;
-      payButton.innerHTML = 'Gerar Pix de R$ 14,90 <span aria-hidden="true">→</span>';
+      payButton.innerHTML = 'Gerar Pix de R$ 0,10 <span aria-hidden="true">→</span>';
     }
   });
 

@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     if (!response.ok) return sendJson(res, 404, { error: 'Pagamento não encontrado.' });
 
     if (payment.external_reference?.startsWith('LIVRO-') !== true ||
-        Number(payment.transaction_amount) !== 14.90 ||
+        Number(payment.transaction_amount) !== 0.10 ||
         payment.currency_id !== 'BRL' ||
         payment.metadata?.produto !== 'uma_jornada_cosmica') {
       return sendJson(res, 403, { error: 'Este pagamento não pertence a esta compra.' });

@@ -130,14 +130,19 @@ export default async function handler(req, res) {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         throw new Error('E-mail do comprador inválido.');
       }
-      deliveryStatus = await entregarLivro({
-        supabase,
-        bucket: process.env.SUPABASE_BUCKET || 'livro-pdf',
-        paymentId: id,
-        nome,
-        email,
-        resendKey
-      });
+      try {
+        deliveryStatus = await entregarLivro({
+          supabase,
+          bucket: process.env.SUPABASE_BUCKET || 'livro-pdf',
+          paymentId: id,
+          nome,
+          email,
+          resendKey
+        });
+      } catch (deliveryError) {
+        console.error('[status-pix-livro] Falha na entrega:', deliveryError?.message || deliveryError);
+        return sendJson(res, 200, { status: payment.status, delivery_status: 'falhou' });
+      }
     } else if (payment.status === 'approved' && (!supabaseUrl || !serviceKey || !resendKey)) {
       console.error('[status-pix-livro] Variáveis de entrega incompletas.');
       return sendJson(res, 503, { error: 'Integração de entrega não configurada.' });

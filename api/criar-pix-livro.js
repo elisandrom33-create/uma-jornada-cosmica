@@ -40,7 +40,7 @@ export default async function handler(req, res) {
         'X-Idempotency-Key': orderId
       },
       body: JSON.stringify({
-        transaction_amount: 0.10,
+        transaction_amount: 14.90,
         description: 'Uma Jornada Cósmica - livro digital PDF',
         payment_method_id: 'pix',
         external_reference: orderId,

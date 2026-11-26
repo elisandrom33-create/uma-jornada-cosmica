@@ -98,5 +98,9 @@ else if(d.status==='rejected'||d.status==='cancelled'){clearInterval(poll);statu
 }
 document.getElementById('copybtn').addEventListener('click',async()=>{await navigator.clipboard.writeText(document.getElementById('pixcode').value);document.getElementById('copybtn').textContent='Código copiado';});
 </script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
